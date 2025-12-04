@@ -1,13 +1,12 @@
 const fs = require('node:fs');
-// copy and paste the file name, including extention into the quotes
-const filename = 'EREP_MEMBER_ELIGIBILITY_IN_REALTIME_11072025_1762537148309_T.txt' 
-// Write the name of the interface the file is for- e.g. 911
+// copy and paste the file name, including extention into the quotes below
+const filename = 'EREP_MEMBER_ELIGIBILITY_IN_REALTIME_11302025_1764353969088_T.txt'
+// Enter the name of the interface the file is for- e.g. 911
 const fileType = '911'
 const dateString = new Date(Date.now()).toLocaleString().split(',')[0];
 const dateArray = dateString.split('/');
 dateArray[0] = dateArray[0].length < 2 ? '0' + dateArray[0] : dateArray[0];
 dateArray[1] = dateArray[1].length < 2 ? '0' + dateArray[1] : dateArray[1];
-
 const date = dateArray[0] + dateArray[1] + dateArray[2];
 
 const regexObject = {
@@ -21,6 +20,9 @@ if(regexObject[fileType].test(filename)) {
     console.log('Filename passes');
 } else {
     console.log('Error in filename');
+    if(fileType === '911' && filename.substring(36, 44) !== dateString) {
+        console.log('incorrect date');
+    }
 }
 let count = 0;
 
@@ -45,7 +47,7 @@ if(fileType === '911' || fileType === '934') {
             if (recordCount === count) {
                 console.log('record count is correct');
             } else {
-                console.log('There are ' + recordCount + ' eligibility records in the file but the Trailer count reads ' + recordCount);
+                console.log('There are ' + count + ' eligibility records in the file but the Trailer count reads ' + recordCount);
             }
             
         }
