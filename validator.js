@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 // copy and paste the file name, including extention into the quotes below
-const filename = 'EREP_MEMBER_ELIGIBILITY_IN_REALTIME_11302025_1764353969088_T.txt'
+const filename = 'EREP_MEMBER_ELIGIBILITY_IN_REALTIME_01132026_1768318547471_T.txt'
 // Enter the name of the interface the file is for- e.g. 911
 const fileType = '911'
 const dateString = new Date(Date.now()).toLocaleString().split(',')[0];
@@ -20,7 +20,7 @@ if(regexObject[fileType].test(filename)) {
     console.log('Filename passes');
 } else {
     console.log('Error in filename');
-    if(fileType === '911' && filename.substring(36, 44) !== dateString) {
+    if(fileType === '911' && filename.substring(36, 44) !== date) {
         console.log('incorrect date');
     }
 }
